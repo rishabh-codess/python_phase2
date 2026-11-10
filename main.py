@@ -1,32 +1,16 @@
-from fastapi import FastAPI
-from models import product
+"""Variables, data types and f-strings."""
 
-app = FastAPI()
+name = "Alice"
+age = 30
+height = 1.68
+is_student = False
 
-@app.get("/")
-def greet():
-    return "welcome to my world"
+print(f"Name: {name} ({type(name).__name__})")
+print(f"Age: {age} ({type(age).__name__})")
+print(f"Height: {height:.1f} m ({type(height).__name__})")
+print(f"Student: {is_student} ({type(is_student).__name__})")
 
-products = [
-    product(id=1, name="Phone", description="A smartphone", price=699.99, quantity=50),
-    product(id=2, name="Laptop", description="A powerful laptop", price=999.99, quantity=30),
-    product(id=3, name="Pen", description="A blue ink pen", price=1.99, quantity=100),
-    product(id=4, name="Table", description="A wooden table", price=199.99, quantity=20)
-]
-
-@app.get("/products")
-def get_all_product():
-    return products
-
-@app.get("/product/{id}")
-def get_product_by_id(id: int):
-    for product in products:
-        if product.id==id:
-            return product
-
-    return"product not found"
-
-@app.post ("product")
-def add_product(product:product):
-    product.append(product)
-    return product
+# Multiple assignment and swapping
+a, b = 1, 2
+a, b = b, a
+print(f"After swap: a={a}, b={b}")
